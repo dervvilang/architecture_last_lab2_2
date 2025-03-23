@@ -1,0 +1,15 @@
+FROM ubuntu:20.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y \
+    g++ make cmake git \
+    librabbitmq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+COPY consumer_rmq.cpp .
+
+RUN g++ consumer_rmq.cpp -o consumer_rmq -lrabbitmq -std=c++11
+
+CMD ["./consumer_rmq"]
