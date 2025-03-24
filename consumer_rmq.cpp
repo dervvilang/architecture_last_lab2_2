@@ -19,7 +19,7 @@ static bool stop_consumer = false;
 // Сколько раз подряд мы получили таймаут (нет сообщений).
 static int consecutive_timeouts = 0;
 // Сколько "пустых" таймаутов подряд считаем признаком, что очередь опустела.
-static const int MAX_CONSECUTIVE_TIMEOUTS = 5;
+static const int MAX_CONSECUTIVE_TIMEOUTS = 10;
 
 // Вызываем при ошибках из amqp_* функций.
 static void die_on_amqp_error(amqp_rpc_reply_t x, const char* context) {
